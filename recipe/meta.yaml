@@ -11,7 +11,7 @@ source:
   sha256: 962aa5fcc212fe4d838f9b28fcf70b6a5c850930fc4d389f444edb821d264110
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -50,3 +50,4 @@ about:
 extra:
   recipe-maintainers:
     - davidbrochart
+    - samuelcolvin
