@@ -221,4 +221,5 @@ Feedstock Maintainers
 =====================
 
 * [@davidbrochart](https://github.com/davidbrochart/)
+* [@samuelcolvin](https://github.com/samuelcolvin/)
 
