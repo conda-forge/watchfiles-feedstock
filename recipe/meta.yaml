@@ -27,14 +27,18 @@ requirements:
     - {{ compiler('rust') }}
     - cargo-bundle-licenses
   host:
+    - maturin
     - pip
-    - setuptools-rust >=1.2.0,<2
     - python
   run:
     - python
     - anyio >=3.0.0,<4
 
 test:
+  requires:
+    - pip
+  commands:
+    - pip check
   imports:
     - watchfiles
   commands:
