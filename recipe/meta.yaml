@@ -1,5 +1,5 @@
 {% set name = "watchfiles" %}
-{% set version = "0.14.1" %}
+{% set version = "0.15.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: babcc3a3502879224e33ba5f25adfbf37a4f22898977c2d96d0ed3eee99eca8a
+  sha256: cab62510f990d195986302aa6a48ed636d685b099927049120d520c96069fa49
 
 build:
   number: 0
@@ -21,20 +21,24 @@ build:
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
+    - python
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('rust') }}
     - cargo-bundle-licenses
   host:
+    - maturin
     - pip
-    - setuptools-rust >=1.2.0,<2
     - python
   run:
     - python
     - anyio >=3.0.0,<4
 
 test:
+  requires:
+    - pip
+  commands:
+    - pip check
   imports:
     - watchfiles
   commands:
