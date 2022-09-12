@@ -11,7 +11,7 @@ source:
   sha256: ae7c57ef920589a40270d5ef3216d693f4e6f8864d8fc8b6cb7885ca98ad2a61
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -38,11 +38,10 @@ requirements:
 test:
   requires:
     - pip
-  commands:
-    - pip check
   imports:
     - watchfiles
   commands:
+    - pip check
     - watchfiles -h
 
 about:
