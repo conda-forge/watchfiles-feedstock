@@ -314,6 +314,3 @@ Feedstock Maintainers
 * [@davidbrochart](https://github.com/davidbrochart/)
 * [@samuelcolvin](https://github.com/samuelcolvin/)
 
-
-<!-- dummy commit to enable rerendering -->
-
