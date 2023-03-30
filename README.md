@@ -1,11 +1,11 @@
-About watchfiles
-================
+About watchfiles-feedstock
+==========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/watchfiles-feedstock/blob/main/LICENSE.txt)
 
 Home: https://watchfiles.helpmanual.io
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/watchfiles-feedstock/blob/main/LICENSE.txt)
 
 Summary: Simple, modern and high performance file watching and code reload in python.
 
