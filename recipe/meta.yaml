@@ -1,5 +1,5 @@
 {% set name = "watchfiles" %}
-{% set version = "0.20.0" %}
+{% set version = "0.21.0" %}
 
 
 package:
@@ -8,11 +8,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 728575b6b94c90dd531514677201e8851708e6e4b5fe7028ac506a200b622019
+  sha256: c76c635fabf542bb78524905718c39f736a98e5ab25b23ec6d4abede1a85a6a3
 
 build:
-  number: 2
+  number: 0
   script:
+    # PyPy has weird sysconfigdata name
+    - rm -f $PREFIX/lib/pypy$PY_VER/_sysconfigdata.py  # [build_platform != target_platform and target_platform == "linux-ppc64le"]
     - {{ PYTHON }} -m pip install . -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
   entry_points:
