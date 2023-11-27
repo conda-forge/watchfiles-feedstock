@@ -13,6 +13,8 @@ source:
 build:
   number: 0
   script:
+    # PyPy has weird sysconfigdata name
+    - rm -f $PREFIX/lib/pypy$PY_VER/_sysconfigdata.py  # [build_platform != target_platform and target_platform == "linux-ppc64le"]
     - {{ PYTHON }} -m pip install . -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
   entry_points:
