@@ -1,5 +1,5 @@
 {% set name = "watchfiles" %}
-{% set version = "0.21.0" %}
+{% set version = "0.22.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c76c635fabf542bb78524905718c39f736a98e5ab25b23ec6d4abede1a85a6a3
+  sha256: 988e981aaab4f3955209e7e28c7794acdb690be1efa7f16f8ea5aba7ffdadacb
 
 build:
   number: 0
@@ -26,6 +26,7 @@ requirements:
     - python
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('rust') }}
     - cargo-bundle-licenses
     - maturin
