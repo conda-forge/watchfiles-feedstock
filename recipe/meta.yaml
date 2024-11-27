@@ -33,9 +33,9 @@ requirements:
   host:
     - maturin
     - pip
-    - python >=3.9
+    - python
   run:
-    - python >=3.9
+    - python
     - anyio >=3.0.0
 
 test:
