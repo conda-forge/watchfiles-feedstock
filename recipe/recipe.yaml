@@ -68,7 +68,10 @@ tests:
         - pytest-timeout >=2.3.1
     script:
       - watchfiles -h
-      - pytest -vv --tb=long --color=yes -k "not cli_help"
+      # skip rationale:
+      #   cli_help                    missing a fixture
+      #   ignore_permission_denied    hangs in linux CI container
+      - pytest -vv --tb=long --color=yes -k "not (cli_help or ignore_permission_denied)"
 
 about:
   summary: Simple, modern and high performance file watching and code reload in python.
