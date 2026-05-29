@@ -41,6 +41,7 @@ requirements:
     - ${{ compiler("c") }}
     - ${{ compiler("rust") }}
     - ${{ stdlib("c") }}
+    - cargo-auditable
     - cargo-bundle-licenses
   host:
     - maturin >=0.14.16,<2
@@ -56,14 +57,18 @@ tests:
       pip_check: true
   - files:
       source:
-        - tests/
         - pyproject.toml
+        - tests/
     requirements:
       run:
-        - pytest
+        - dirty-equals >=0.8.0
+        - pytest >=7.4.4
+        - pytest-mock >=3.14.0
+        - pytest-pretty >=1.2.0
+        - pytest-timeout >=2.3.1
     script:
       - watchfiles -h
-      - pytest -vv --tb=long --color=yes
+      - pytest -vv --tb=long --color=yes -k "not cli_help"
 
 about:
   summary: Simple, modern and high performance file watching and code reload in python.
