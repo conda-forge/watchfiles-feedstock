@@ -14,7 +14,7 @@ source:
   sha256: c995fba777f1ea992f090f9236e9284cf7a5d1a0130dd5a3d82c598cacd76838
 
 build:
-  number: 2
+  number: 1
   script:
     env:
       CARGO_PROFILE_RELEASE_STRIP: symbols
@@ -62,10 +62,16 @@ tests:
     requirements:
       run:
         - dirty-equals >=0.8.0
-        - pytest >=7.4.4
+        - pytest >=7.4.4,<9.1
         - pytest-mock >=3.14.0
         - pytest-pretty >=1.2.0
         - pytest-timeout >=2.3.1
+        - if: match(version, "1.2.0.*")
+          then:
+            # avoid warning hoisted by `filterwarnings = "error"`
+            #   pytest.PytestRemovedIn10Warning: Passing a non-Collection
+            #   iterable to parametrize is deprecated.
+            - pytest <9.1
     script:
       - watchfiles -h
       # skip rationale:
