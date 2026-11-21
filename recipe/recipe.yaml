@@ -4,11 +4,13 @@ schema_version: 1
 context:
   name: watchfiles
   version: "1.3.0"
-  python_check_max: "3.14"
+  cargo_wrapper: cargo-auditable-wrapper${{ ".bat" if win else ".sh" }}
+  python_check_max: "3.15"
   # skip rationale:
   #   cli_help                    missing a fixture
   #   ignore_permission_denied    hangs in linux CI container
   pytest_k: not (cli_help or ignore_permission_denied)
+  abi3audit_args: abi3audit -s -v --assume-minimum-abi3 ${{ python_min }}
 
 package:
   name: watchfiles
@@ -19,22 +21,22 @@ source:
   sha256: 99aee4a07847c06820765fd7b1b49ceac4f3f711ccb7d104655a33231de1c207
 
 build:
-  number: 1
+  number: 2
   skip: is_abi3 and not is_python_min
   script:
     env:
       CARGO_PROFILE_RELEASE_STRIP: symbols
       CARGO_PROFILE_RELEASE_LTO: fat
-      CARGO: cargo-auditable-wrapper${{ ".bat" if win }}
+      CARGO: ${{ cargo_wrapper }}
       PYTHONIOENCODING: utf-8
       PYTHONLEGACYTEXTENCODING: utf-8
     content:
       - if: win
         then:
-          - copy "%RECIPE_DIR%\cargo-auditable-wrapper.bat" "%BUILD_PREFIX%\Library\bin\cargo-auditable-wrapper.bat"
+          - copy "%RECIPE_DIR%\${{ cargo_wrapper }}" "%BUILD_PREFIX%\Library\bin\"
         else:
-          - cp "${RECIPE_DIR}/cargo-auditable-wrapper.sh" "${BUILD_PREFIX}/bin/cargo-auditable-wrapper"
-          - chmod 755 "${BUILD_PREFIX}/bin/cargo-auditable-wrapper"
+          - cp "${RECIPE_DIR}/cargo-auditable-wrapper.sh" "${BUILD_PREFIX}/bin/"
+          - chmod 755 "${BUILD_PREFIX}/bin/${{ cargo_wrapper }}"
       - |-
         ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check --check-build-dependencies
       - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
@@ -45,35 +47,46 @@ build:
 
 requirements:
   build:
-    - if: build_platform != host_platform
-      then: python
-    - if: build_platform != host_platform
-      then: cross-python_${{ host_platform }}
     - ${{ compiler("c") }}
     - ${{ compiler("rust") }}
     - ${{ stdlib("c") }}
     - cargo-auditable
     - cargo-bundle-licenses
+    - if: build_platform != host_platform
+      then:
+        - python
+        - cross-python_${{ host_platform }}
   host:
     - maturin >=0.14.16,<2
     - pip
-    - python
     - if: is_abi3
       then:
         - python ${{ python_min }}.*
         - python-abi3
+      else:
+        - python
+
   run:
-    - python
     - anyio >=3.0.0
     - if: is_abi3
       then:
         - python >=${{ python_min }}
         - python-abi3
+      else:
+        - python
 
 tests:
   - python:
       imports: watchfiles
       pip_check: true
+      python_version:
+        - if: is_abi3
+          then:
+            - ${{ python_check_max }}.*
+            - ${{ python_min }}.*
+          else:
+            - "*"
+
   - files:
       source:
         - pyproject.toml
@@ -92,10 +105,10 @@ tests:
     script:
       - watchfiles -h
       - pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
-      - if: is_abi3
-        then:
-          - cd "${{ '$SP_DIR' if unix else '%SP_DIR%' }}/watchfiles"
-          - abi3audit -s -v --assume-minimum-abi3 ${{ python_min }} _rust_notify.${{ 'abi3.so' if unix else 'pyd' }}
+      - if: is_abi3 and unix
+        then: ${{ abi3audit_args }} "${SP_DIR}/watchfiles/_rust_notify.abi3.so"
+      - if: is_abi3 and win
+        then: ${{ abi3audit_args }} "%SP_DIR%\watchfiles\_rust_notify.pyd"
 
 about:
   summary: Simple, modern and high performance file watching and code reload in python.

@@ -1,5 +1,7 @@
 c_compiler:
-- vs2022
+- vs
+c_compiler_version:
+- '2022'
 c_stdlib:
 - vs
 channel_sources:
@@ -7,15 +9,15 @@ channel_sources:
 channel_targets:
 - conda-forge main
 is_abi3:
-- false
+- true
 is_python_min:
-- false
+- true
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.14.* *_cp314t
+- 3.11.* *_cpython
 python_min:
 - '3.11'
 rust_compiler:
