@@ -106,7 +106,7 @@ tests:
       - watchfiles -h
       - pytest -vv --tb=long --color=yes -k "${{ pytest_k }}"
       - if: is_abi3 and unix
-        then: ${{ abi3audit_args }} "${SP_DIR}/watchfiles/_rust_notify.ab3.so"
+        then: ${{ abi3audit_args }} "${SP_DIR}/watchfiles/_rust_notify.abi3.so"
       - if: is_abi3 and win
         then: ${{ abi3audit_args }} "%SP_DIR%\watchfiles\_rust_notify.pyd"
 
