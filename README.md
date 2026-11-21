@@ -38,45 +38,31 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>osx_64_is_abi3falsepython3.14.____cp314t</td>
+              <td>osx_64_is_abi3false</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15892&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_is_abi3falsepython3.14.____cp314t" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_is_abi3false" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_is_abi3falsepython3.15.____cp315t</td>
+              <td>osx_64_is_abi3true</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15892&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_is_abi3falsepython3.15.____cp315t" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_is_abi3true" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_is_abi3truepython3.11.____cpython</td>
+              <td>osx_arm64_is_abi3false</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15892&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_is_abi3truepython3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_is_abi3false" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_arm64_is_abi3falsepython3.14.____cp314t</td>
+              <td>osx_arm64_is_abi3true</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15892&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_is_abi3falsepython3.14.____cp314t" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_is_abi3falsepython3.15.____cp315t</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15892&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_is_abi3falsepython3.15.____cp315t" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_is_abi3truepython3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=15892&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_is_abi3truepython3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/watchfiles-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_is_abi3true" alt="variant">
                 </a>
               </td>
             </tr>
